@@ -102,9 +102,14 @@ object ManagerDAO {
 
           var email = cols(0)
 
-          val searched = getResults(collection.find(equal("email", cols(0))))(0)
-          println(s"The user you have searched for is ${searched.first_name} ${searched.last_name}. Their email address" +
-            s" is ${email} and they have a balance of ${searched.balance}.")
+          if (getResults(collection.find(equal("email", cols(0)))) == 0) {
+            println(s"There does not exits a user with the email ${email}")
+          }
+          else {
+            val searched = getResults(collection.find(equal("email", cols(0))))(0)
+            println(s"The user you have searched for is ${searched.first_name} ${searched.last_name}. Their email address" +
+              s" is ${email} and they have a balance of ${searched.balance}.")
+          }
         }
         return openedFile
 
@@ -196,7 +201,7 @@ object ManagerDAO {
           val searchAmount = cols(0).toDouble
 
           for(item <- (collection.find(or(gt("balance", searchAmount), equal("balance", searchAmount))))) {
-            println(s"${item.email}")
+            println(s"${item.email}, ${item.balance}")
           }
         }
       }

@@ -43,7 +43,7 @@ object CustomerDAO {
         //If the username and password are a match the name of the user along with their current balance will be
         //printed to the console.
         if (user.length > 0) {
-          println(s"Hello ${user(0).first_name} ${user(0).last_name}. Your current balance is ${user(0).balance}.")
+          println(s"Hello ${user(0).first_name} ${user(0).last_name}, your current balance is ${user(0).balance}.")
         }
         else {
           println("The username and password you entered is incorrect")
